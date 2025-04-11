@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import { useUnityState } from '../unityMiddleware';
 import AnimationManager from '../VISOS/action/visualizers/AnimationManager';
 import { ActionUnitsList, VisemesList } from '../unity/facs/shapeDict';
 import GameText from './GameText';
 import IntroBox from './IntroBox';
 import { useToast, Box } from '@chakra-ui/react';
+
+import ScreenManager from './AUDScreenManager';
 
 function AUDApp() {
     const { isLoaded, engine, facslib } = useUnityState();
@@ -24,6 +26,8 @@ function AUDApp() {
     const [showIntro, setShowIntro] = useState(true);
     const toast = useToast();
 
+    const screenManagerRef = useRef()
+
     useEffect(() => {
         if (isLoaded && facslib && !animationManager) {
             const manager = new AnimationManager(facslib, setAuStates, setVisemeStates);
@@ -41,9 +45,18 @@ function AUDApp() {
                     ? JSON.parse(storedSettings)
                     : module.defaultSettings || {};
 
+                
+
                 const container = document.getElementById('module-container');
+
+                const ui = {
+                    setScreen: (n) => {
+                        screenManagerRef.current?.setScreen(n);
+                    }
+                };
+
                 if (container) {
-                    module.start(animationManager, settings, { current: container }, toast);
+                    module.start(animationManager, settings, { current: container }, toast, ui);
                 } else {
                     console.error("Module container not found");
                 }
@@ -67,6 +80,7 @@ function AUDApp() {
                     ) : (
                         <>
                             <Box id="module-container" />
+                            <ScreenManager ref={screenManagerRef} />
                             {isRequestLoading && <GameText />}
                         </>
                     )}
