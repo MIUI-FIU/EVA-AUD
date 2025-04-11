@@ -1,10 +1,10 @@
 {
-  "name": "EVA-libre",
+  "name": "EVA-AUD",
   "version": "1.0.0",
-  "repository": "https://github.com/meekmachine/EVA-libre.git",
-  "author": "Jonathan Fields <jonathanfields@gmail.com>",
+  "repository": "https://github.com/MIUI-FIU/EVA-AUD",
+  "author": "Christopher Duarte <cduarte@cs.miami.edu>",
   "license": "MIT",
-  "homepage": "https://meekmachine.github.io/EVA-libre",
+  "homepage": "https://miui-fiu.github.io/EVA-AUD",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@chakra-ui/icons": "^2.1.1",

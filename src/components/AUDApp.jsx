@@ -3,85 +3,76 @@ import { useUnityState } from '../unityMiddleware';
 import AnimationManager from '../VISOS/action/visualizers/AnimationManager';
 import { ActionUnitsList, VisemesList } from '../unity/facs/shapeDict';
 import GameText from './GameText';
-import ModulesMenu from './ModulesMenu';
-
-
-import IntroBox from './IntroBox'
-
+import IntroBox from './IntroBox';
+import { useToast, Box } from '@chakra-ui/react';
 
 function AUDApp() {
     const { isLoaded, engine, facslib } = useUnityState();
-    const [auStates, setAuStates] = useState(ActionUnitsList.reduce((acc, au) => ({
+    const [auStates, setAuStates] = useState(
+        ActionUnitsList.reduce((acc, au) => ({
             ...acc, [au.id]: { intensity: 0, name: au.name, notes: "" },
-        }), {}));
-    const [visemeStates, setVisemeStates] = useState(VisemesList.reduce((acc, viseme) => ({
+        }), {})
+    );
+    const [visemeStates, setVisemeStates] = useState(
+        VisemesList.reduce((acc, viseme) => ({
             ...acc, [viseme.id]: { intensity: 0, name: viseme.name },
-        }), {}));
+        }), {})
+    );
     const [animationManager, setAnimationManager] = useState(null);
     const [setupComplete, setSetupComplete] = useState(false);
     const [isRequestLoading, setRequestIsLoading] = useState(false);
+    const [showIntro, setShowIntro] = useState(true);
+    const toast = useToast();
 
-    const [showIntro, setShowIntro] = useState(true);    
-    
     useEffect(() => {
         if (isLoaded && facslib && !animationManager) {
             const manager = new AnimationManager(facslib, setAuStates, setVisemeStates);
             window.animationManager = manager;
-            
             setAnimationManager(manager);
-            // faceMaker(manager, setIsSurveyActive, toast, setRequestIsLoading, speak);
             setSetupComplete(true);
         }
     }, [isLoaded, facslib]);
-    
-    
-    return(
+
+    const startModuleDirectly = () => {
+        import('../modules/evaDBE')
+            .then(module => {
+                const storedSettings = localStorage.getItem('EVA-DBE');
+                const settings = storedSettings
+                    ? JSON.parse(storedSettings)
+                    : module.defaultSettings || {};
+
+                const container = document.getElementById('module-container');
+                if (container) {
+                    module.start(animationManager, settings, { current: container }, toast);
+                } else {
+                    console.error("Module container not found");
+                }
+            })
+            .catch(err => {
+                console.error("Failed to load evaDBE module", err);
+            });
+    };
+
+    return (
         <div className="AUDApp">
-        {isLoaded && setupComplete && animationManager && (
-            <>
-                <p>Unity has loaded, and setup is complete. You can now interact with the Unity content.</p>
-
-
-                {showIntro && <IntroBox onContinue={() => setShowIntro(false)} />}
-
-                {!showIntro && (
-                    <>
-                        {/* <SliderDrawer
-                            auStates={auStates}
-                            setAuStates={setAuStates}
-                            visemeStates={visemeStates}
-                            setVisemeStates={setVisemeStates}
-                            animationManager={animationManager}
-                            drawerControls={drawerControls}
-                            setDrawerControls={setDrawerControls}
-                        /> */}
-                        <ModulesMenu animationManager={animationManager} />
-
-                        {isRequestLoading && (<GameText />)}
-                    </>
-                )}
-
-
-
-
-                {/* <IntroBox /> */}
-                {/* <SliderDrawer
-                    auStates={auStates}
-                    setAuStates={setAuStates}
-                    visemeStates={visemeStates}
-                    setVisemeStates={setVisemeStates}
-                    animationManager={animationManager}
-                    drawerControls={drawerControls}
-                    setDrawerControls={setDrawerControls}
-                /> */}
-                {/* <ModulesMenu animationManager={animationManager} /> */}
-
-                {/* {isRequestLoading && (<GameText />)} */}
-                
-                
-            </>
-        )}
-    </div>
+            {isLoaded && setupComplete && animationManager && (
+                <>
+                    {showIntro ? (
+                        <IntroBox
+                            onContinue={() => {
+                                setShowIntro(false);
+                                startModuleDirectly();
+                            }}
+                        />
+                    ) : (
+                        <>
+                            <Box id="module-container" />
+                            {isRequestLoading && <GameText />}
+                        </>
+                    )}
+                </>
+            )}
+        </div>
     );
 }
 
