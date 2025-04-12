@@ -140,6 +140,7 @@ const ScreenManager = forwardRef((props, ref) => {
             }
         }
     }));
+    
 
     const goToNextScreen = () => {
         setCurrentScreen(prev => prev + 1); // Move to the next screen

@@ -362,6 +362,7 @@ import RankableListDisplay from './RankableListDisplay';
 import { NextButton } from './NextButton';
 import DialogueInputComponent from './DialogueInputComponent';
 import screenDialogues from './dialogueData';
+import ProgressBar from './ProgressBar';
 
 const styles = {
     screen: {
@@ -401,9 +402,11 @@ const ScreenWrapper = ({ children, currentScreenId, title }) => {
                 currentScreen={currentScreenId}
                 onScreenChange={handleScreenChange}
             />
+            {/* Add the progress bar here */}
+            <ProgressBar currentScreen={currentScreenId} totalScreens={9} />
+            
             <h2 style={styles.title}>{title}</h2>
             
-            {/* The DialogueInputComponent is now positioned at the bottom through its internal styling */}
             <DialogueInputComponent 
                 initialDialogue={screenDialogues[currentScreenId] || []}
                 placeholder="Type your response here..."
