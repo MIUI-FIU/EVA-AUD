@@ -6,6 +6,7 @@
   "license": "MIT",
   "homepage": "https://miui-fiu.github.io/EVA-AUD",
   "dependencies": {
+    "@atlaskit/pragmatic-drag-and-drop": "1.5.2",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",

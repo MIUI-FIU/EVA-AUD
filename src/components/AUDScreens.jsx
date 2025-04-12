@@ -354,8 +354,11 @@
 
 // export default App;
 
-import React from 'react';
+import React, { useState } from 'react';
 import HamburgerMenu from './HamburgerMenu';
+import ListDisplay from './ListDisplay';
+import InfoButton from './InfoButton';
+import RankableListDisplay from './RankableListDisplay';
 import { NextButton } from './NextButton';
 import DialogueInputComponent from './DialogueInputComponent';
 import screenDialogues from './dialogueData';
@@ -423,33 +426,128 @@ export const Screen1 = ({ onNext }) => {
 };
 
 export const Screen2 = ({ onNext }) => {
+    const [showCommon, setShowCommon] = useState(false);
+
+    const yourBenefitsList = [
+        "It helps me feel relaxed.",
+        "It makes me more happy.",
+        "It makes me more creative.",
+    ];
+
+    const commonBenefitsList = [
+        "It relaxes me.",
+        "It helps me sleep.",
+        "It helps me be more open socially.",
+        "It helps me forget my problems.",
+        "It helps me adjust my attitude.",
+        "I feel more creative when I drink.",
+        "It helps me feel sexier or have better sex.",
+        "I like the high."
+    ];
+
+    const handleInfoClick = () => {
+        setShowCommon((prev) => !prev);
+    };
+
     return (
-        <ScreenWrapper 
-            currentScreenId={2} 
-            title="Pros of Drinking"
-        >
+        <ScreenWrapper currentScreenId={2} title="Pros of Drinking">
+            <ListDisplay title="Your Benefits" items={yourBenefitsList} top='200px' left='200px' />
+            {showCommon && (
+                <ListDisplay title="Common Benefits" items={commonBenefitsList} top='260px' right='165px' />
+            )}
+            <InfoButton
+                onClick={handleInfoClick}
+                title={showCommon ? "Hide Common Benefits" : "View Common Benefits"}
+            />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );
 };
 
 export const Screen3 = ({ onNext }) => {
+    const [showCommon, setShowCommon] = useState(false);
+
+    const yourDrawbacksList = [
+        "I lose focus the next day.",
+        "I feel emotionally off the next day.",
+        "It makes me question my decisions."
+    ]
+
+    const commonDrawbacksList = [
+        "It affects my relationships with others.",
+        "DWI/DUIs",
+        "Other legal problems",
+        "Money problems",
+        "Memory blackouts",
+        "Make poor decisions",
+        "Feel guilty or ashamed",
+        "Miss class or work the next day",
+        "Shamed or embarassed someone",
+        "Neglecting responsibilities",
+        "Being a poor role model for my kids when I drink",
+        "Feeling dependent on alcohol",
+        "Passing out or fainting suddenly",
+        "Health symptoms or problems"
+    ]
+
+    const handleInfoClick = () => {
+        setShowCommon((prev) => !prev);
+    };
+
     return (
-        <ScreenWrapper 
-            currentScreenId={3} 
-            title="Cons of Drinking"
-        >
+        <ScreenWrapper currentScreenId={3} title="Cons of Drinking">
+            <ListDisplay title="Your Drawbacks" items={yourDrawbacksList} top='200px' left='200px' />
+            {showCommon && (
+                <ListDisplay title="Common Drawbacks" items={commonDrawbacksList} top='260px' right='165px' />
+            )}
+            <InfoButton
+                onClick={handleInfoClick}
+                title={showCommon ? "Hide Common Drawbacks" : "View Common Drawbacks"}
+            />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );
 };
 
 export const Screen4 = ({ onNext }) => {
+    const [rankedItems, setRankedItems] = useState([]);
+
+    const yourBenefitsList = [
+        "It helps me feel relaxed.",
+        "It makes me more happy.",
+        "It makes me more creative.",
+    ];
+
+    const yourDrawbacksList = [
+        "I lose focus the next day.",
+        "I feel emotionally off the next day.",
+        "It makes me question my decisions."
+    ]
+
+    const handleRankChange = (newOrder) => {
+        setRankedItems(newOrder);
+        console.log("Ranked order updated:", newOrder);
+    };
+
     return (
-        <ScreenWrapper 
-            currentScreenId={4} 
-            title="Prioritization of Drinking"
-        >
+        <ScreenWrapper currentScreenId={4} title="Prioritization of Drinking">
+            <RankableListDisplay
+                title="Drag and drop to rank your most important benefits to drinking"
+                items={yourBenefitsList}
+                onRankChange={handleRankChange}
+                top='200px'
+                left='150px'
+                listId='0'
+            />
+
+            <RankableListDisplay
+                title="Drag and drop to rank your most important drawbacks to drinking"
+                items={yourDrawbacksList}
+                onRankChange={handleRankChange}
+                top='200px'
+                right='150px'
+                listId='1'
+            />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );
