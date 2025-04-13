@@ -358,6 +358,7 @@ import React, { useState } from 'react';
 import HamburgerMenu from './HamburgerMenu';
 import ListDisplay from './ListDisplay';
 import InfoButton from './InfoButton';
+import MicrophoneButton from "./MicrophoneButton";
 import RankableListDisplay from './RankableListDisplay';
 import { NextButton } from './NextButton';
 import DialogueInputComponent from './DialogueInputComponent';
@@ -419,10 +420,7 @@ const ScreenWrapper = ({ children, currentScreenId, title }) => {
 
 export const Screen1 = ({ onNext }) => {
     return (
-        <ScreenWrapper 
-            currentScreenId={1} 
-            title="Introduction"
-        >
+        <ScreenWrapper currentScreenId={1} title="Introduction">
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );
@@ -453,10 +451,11 @@ export const Screen2 = ({ onNext }) => {
     };
 
     return (
+        <>
         <ScreenWrapper currentScreenId={2} title="Pros of Drinking">
-            <ListDisplay title="Your Benefits" items={yourBenefitsList} top='200px' left='200px' />
+            <ListDisplay title="Your Benefits" items={yourBenefitsList} top='20%' left='10%' />
             {showCommon && (
-                <ListDisplay title="Common Benefits" items={commonBenefitsList} top='260px' right='165px' />
+                <ListDisplay title="Common Benefits" items={commonBenefitsList} top='20%' right='15%' />
             )}
             <InfoButton
                 onClick={handleInfoClick}
@@ -464,6 +463,8 @@ export const Screen2 = ({ onNext }) => {
             />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
+        <MicrophoneButton />
+        </>
     );
 };
 
@@ -499,9 +500,9 @@ export const Screen3 = ({ onNext }) => {
 
     return (
         <ScreenWrapper currentScreenId={3} title="Cons of Drinking">
-            <ListDisplay title="Your Drawbacks" items={yourDrawbacksList} top='200px' left='200px' />
+            <ListDisplay title="Your Drawbacks" items={yourDrawbacksList} top='20%' left='10%' />
             {showCommon && (
-                <ListDisplay title="Common Drawbacks" items={commonDrawbacksList} top='260px' right='165px' />
+                <ListDisplay title="Common Drawbacks" items={commonDrawbacksList} top='20%' right='15%' />
             )}
             <InfoButton
                 onClick={handleInfoClick}
@@ -571,8 +572,8 @@ export const Screen5 = ({ onNext }) => {
 
     return (
         <ScreenWrapper currentScreenId={5} title="Personalized Insights">
-            <ListDisplay title="Your Benefits" items={yourBenefitsList} top='200px' left='200px' />
-            <ListDisplay title="Your Drawbacks" items={yourDrawbacksList} top='200px' right='200px' />
+            <ListDisplay title="Your Benefits" items={yourBenefitsList} top='20%' left='10%' />
+            <ListDisplay title="Your Drawbacks" items={yourDrawbacksList} top='20%' right='15%' />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );
@@ -610,9 +611,9 @@ export const Screen6 = ({ onNext }) => {
 
     return (
         <ScreenWrapper currentScreenId={6} title="Alternatives (Getting What You Want)">
-            <ListDisplay title="Your Choices" items={yourChoicesList} top='200px' left='200px' />
+            <ListDisplay title="Your Choices" items={yourChoicesList} top='20%' left='10%' />
             {showCommon && (
-                <ListDisplay title="Suggestions" items={suggestionsList} top='260px' right='165px' />
+                <ListDisplay title="Suggestions" items={suggestionsList} top='20%' right='15%' />
             )}
             <InfoButton
                 onClick={handleInfoClick}
@@ -654,9 +655,9 @@ export const Screen7 = ({ onNext }) => {
 
     return (
         <ScreenWrapper currentScreenId={7} title="Alternatives (Get Where You Want To Go)">
-            <ListDisplay title="Your Choices" items={yourChoicesList} top='200px' left='200px' />
+            <ListDisplay title="Your Choices" items={yourChoicesList} top='20%' left='10%' />
             {showCommon && (
-                <ListDisplay title="Suggestions" items={suggestionsList} top='260px' right='210px' />
+                <ListDisplay title="Suggestions" items={suggestionsList} top='20%' right='15%' />
             )}
             <InfoButton
                 onClick={handleInfoClick}
@@ -683,8 +684,8 @@ export const Screen8 = ({ onNext }) => {
 
     return (
         <ScreenWrapper currentScreenId={8} title="Alternatives (Feedback)">
-            <ListDisplay title="Your Desired Effects" items={yourDesiredEffectsList} top='200px' left='200px' />
-            <ListDisplay title="Possible Alternatives" items={yourPossibleAlternativesList} top='200px' right='200px' />
+            <ListDisplay title="Your Desired Effects" items={yourDesiredEffectsList} top='20%' left='10%' />
+            <ListDisplay title="Possible Alternatives" items={yourPossibleAlternativesList}top='20%' right='15%' />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );

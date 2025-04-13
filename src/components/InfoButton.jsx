@@ -6,7 +6,7 @@ const InfoButton = ({ onClick, title = "More info" }) => {
     const buttonStyle = {
         position: 'absolute',
         top: '200px',
-        right: '300px',
+        right: '20%',
         background: isHovered ? '#0056b3' : '#007bff', // darker blue on hover
         border: 'none',
         borderRadius: '50%',
