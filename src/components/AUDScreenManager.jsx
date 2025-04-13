@@ -99,7 +99,8 @@
 
 // export default ScreenManager;
 import React, { useState, forwardRef, useImperativeHandle, useEffect } from 'react';
-import { Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, Screen9 } from './AUDScreens';  // Import all screens
+import { Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, Screen9 } from './AUDScreens';
+import FinishModal from './FinishModal'; 
 
 const ScreenManager = forwardRef((props, ref) => {
     const [currentScreen, setCurrentScreen] = useState(1); // Track which screen is being shown
@@ -146,14 +147,23 @@ const ScreenManager = forwardRef((props, ref) => {
         setCurrentScreen(prev => prev + 1); // Move to the next screen
     };
 
+    // const finishFlow = () => {
+    //     console.log('Flow finished!');
+    //     // Call window.finishScreens if available
+    //     if (window.finishScreens) {
+    //         window.finishScreens();
+    //     } else {
+    //         alert('Flow finished!');
+    //     }
+    //     setCurrentScreen(0); // Reset or hide all screens
+    // };
     const finishFlow = () => {
         console.log('Flow finished!');
         // Call window.finishScreens if available
         if (window.finishScreens) {
             window.finishScreens();
-        } else {
-            alert('Flow finished!');
         }
+        // The alert is now removed
         setCurrentScreen(0); // Reset or hide all screens
     };
 
@@ -163,33 +173,73 @@ const ScreenManager = forwardRef((props, ref) => {
     }, [currentScreen]);
 
     // Determine which screen to show based on the current state
-    const renderCurrentScreen = () => {
-        console.log('Rendering screen:', currentScreen);
-        switch (currentScreen) {
-            case 1:
-                return <Screen1 onNext={goToNextScreen} />;
-            case 2:
-                return <Screen2 onNext={goToNextScreen} />;
-            case 3:
-                return <Screen3 onNext={goToNextScreen} />;
-            case 4:
-                return <Screen4 onNext={goToNextScreen} />;
-            case 5:
-                return <Screen5 onNext={goToNextScreen} />;
-            case 6:
-                return <Screen6 onNext={goToNextScreen} />;
-            case 7:
-                return <Screen7 onNext={goToNextScreen} />;
-            case 8:
-                return <Screen8 onNext={goToNextScreen} />;
-            case 9:
-                return <Screen9 onFinish={finishFlow} />;
-            default:
-                return <div>Flow Finished</div>; // Final message when all screens are done
-        }
-    };
+    // const renderCurrentScreen = () => {
+    //     console.log('Rendering screen:', currentScreen);
+    //     switch (currentScreen) {
+    //         case 1:
+    //             return <Screen1 onNext={goToNextScreen} />;
+    //         case 2:
+    //             return <Screen2 onNext={goToNextScreen} />;
+    //         case 3:
+    //             return <Screen3 onNext={goToNextScreen} />;
+    //         case 4:
+    //             return <Screen4 onNext={goToNextScreen} />;
+    //         case 5:
+    //             return <Screen5 onNext={goToNextScreen} />;
+    //         case 6:
+    //             return <Screen6 onNext={goToNextScreen} />;
+    //         case 7:
+    //             return <Screen7 onNext={goToNextScreen} />;
+    //         case 8:
+    //             return <Screen8 onNext={goToNextScreen} />;
+    //         case 9:
+    //             // return <Screen9 onFinish={finishFlow} />;
+    //         default:
+    //             // return <div>Flow Finished</div>; // Final message when all screens are done
+    //     }
+    // };
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+const openModal = () => setIsModalOpen(true);
+const closeModal = () => {
+  setIsModalOpen(false);
+  finishFlow(); // Call finishFlow after closing the modal
+};
+
+const renderCurrentScreen = () => {
+    console.log('Rendering screen:', currentScreen);
+    switch (currentScreen) {
+        case 1:
+            return <Screen1 onNext={goToNextScreen} />;
+        case 2:
+            return <Screen2 onNext={goToNextScreen} />;
+        case 3:
+            return <Screen3 onNext={goToNextScreen} />;
+        case 4:
+            return <Screen4 onNext={goToNextScreen} />;
+        case 5:
+            return <Screen5 onNext={goToNextScreen} />;
+        case 6:
+            return <Screen6 onNext={goToNextScreen} />;
+        case 7:
+            return <Screen7 onNext={goToNextScreen} />;
+        case 8:
+            return <Screen8 onNext={goToNextScreen} />;
+        case 9:
+            return (
+              <>
+                <Screen9 onFinish={openModal} />
+                <FinishModal isOpen={isModalOpen} onClose={closeModal} />
+              </>
+            );
+        default:
+            return null; 
+    }
+};
 
     return <div>{renderCurrentScreen()}</div>;
 });
+
 
 export default ScreenManager;
