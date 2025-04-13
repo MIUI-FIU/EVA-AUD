@@ -557,44 +557,134 @@ export const Screen4 = ({ onNext }) => {
 };
 
 export const Screen5 = ({ onNext }) => {
+    const yourBenefitsList = [
+        "It helps me feel relaxed.",
+        "It makes me more happy.",
+        "It makes me more creative.",
+    ];
+
+    const yourDrawbacksList = [
+        "I lose focus the next day.",
+        "I feel emotionally off the next day.",
+        "It makes me question my decisions."
+    ]
+
     return (
-        <ScreenWrapper 
-            currentScreenId={5} 
-            title="Personalized Insights"
-        >
+        <ScreenWrapper currentScreenId={5} title="Personalized Insights">
+            <ListDisplay title="Your Benefits" items={yourBenefitsList} top='200px' left='200px' />
+            <ListDisplay title="Your Drawbacks" items={yourDrawbacksList} top='200px' right='200px' />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );
 };
 
 export const Screen6 = ({ onNext }) => {
+    const [showCommon, setShowCommon] = useState(false);
+
+    const yourChoicesList = [
+        "It helps me feel relaxed.",
+        "It makes me feel \"present in the moment\"",
+        "It makes me more creative."
+    ]
+
+    const suggestionsList = [
+        "To reduce my stress levels.",
+        "To be more relaxed in social situations.",
+        "To have fun",
+        "To fit in",
+        "To feel accepted",
+        "To adjust my attitude",
+        "To be more sociable",
+        "To enjoy sex more",
+        "To be more assertive",
+        "To get high",
+        "To be a better lover",
+        "To be braver or more daring",
+        "To sleep",
+        "To forget"
+    ]
+
+    const handleInfoClick = () => {
+        setShowCommon((prev) => !prev);
+    };
+
     return (
-        <ScreenWrapper 
-            currentScreenId={6} 
-            title="Alternatives (Getting What You Want)"
-        >
+        <ScreenWrapper currentScreenId={6} title="Alternatives (Getting What You Want)">
+            <ListDisplay title="Your Choices" items={yourChoicesList} top='200px' left='200px' />
+            {showCommon && (
+                <ListDisplay title="Suggestions" items={suggestionsList} top='260px' right='165px' />
+            )}
+            <InfoButton
+                onClick={handleInfoClick}
+                title={showCommon ? "Hide Suggestions" : "View Suggestions"}
+            />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );
 };
 
 export const Screen7 = ({ onNext }) => {
+    const [showCommon, setShowCommon] = useState(false);
+
+    const yourChoicesList = [
+        "Go work out",
+        "Listen to/play music",
+        "Journaling",
+        "Spend time with friends"
+    ]
+
+    const suggestionsList = [
+        "Meditate",
+        "Call a friend",
+        "Go work out",
+        "Go dancing",
+        "Catch a movie",
+        "Go out to eat",
+        "Play video games",
+        "Go to the mall/shopping",
+        "Listen to/play music",
+        "Play sports",
+        "Attend a sporting event",
+        "Spend time with friends"
+    ]
+
+    const handleInfoClick = () => {
+        setShowCommon((prev) => !prev);
+    };
+
     return (
-        <ScreenWrapper 
-            currentScreenId={7} 
-            title="Alternatives (Get Where You Want To Go)"
-        >
+        <ScreenWrapper currentScreenId={7} title="Alternatives (Get Where You Want To Go)">
+            <ListDisplay title="Your Choices" items={yourChoicesList} top='200px' left='200px' />
+            {showCommon && (
+                <ListDisplay title="Suggestions" items={suggestionsList} top='260px' right='210px' />
+            )}
+            <InfoButton
+                onClick={handleInfoClick}
+                title={showCommon ? "Hide Suggestions" : "View Suggestions"}
+            />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );
 };
 
 export const Screen8 = ({ onNext }) => {
+    const yourDesiredEffectsList = [
+        "It helps me feel relaxed",
+        "It makes me feel \"present in the moment\"",
+        "It makes me more creative"
+    ];
+
+    const yourPossibleAlternativesList = [
+        "Go work out",
+        "Listen to/play music",
+        "Journaling",
+        "Spend time with friends"
+    ]
+
     return (
-        <ScreenWrapper 
-            currentScreenId={8} 
-            title="Alternatives (Feedback)"
-        >
+        <ScreenWrapper currentScreenId={8} title="Alternatives (Feedback)">
+            <ListDisplay title="Your Desired Effects" items={yourDesiredEffectsList} top='200px' left='200px' />
+            <ListDisplay title="Possible Alternatives" items={yourPossibleAlternativesList} top='200px' right='200px' />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );
@@ -602,10 +692,7 @@ export const Screen8 = ({ onNext }) => {
 
 export const Screen9 = ({ onFinish }) => {
     return (
-        <ScreenWrapper 
-            currentScreenId={9} 
-            title="Conclusion"
-        >
+        <ScreenWrapper currentScreenId={9} title="Conclusion">
             <NextButton onClick={onFinish} text="Finish" />
         </ScreenWrapper>
     );

@@ -24,7 +24,7 @@ const ProgressBar = ({ currentScreen, totalScreens = 9 }) => {
     progressInner: {
       height: '100%',
       width: `${percentage}%`,
-      backgroundColor: '#4285F4', // Google blue, you can change this
+      backgroundColor: '#00FF00', // Google blue, you can change this
       borderRadius: '4px',
       transition: 'width 0.3s ease-in-out',
     },
