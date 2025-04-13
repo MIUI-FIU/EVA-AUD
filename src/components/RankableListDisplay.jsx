@@ -8,7 +8,7 @@ const containerBaseStyle = {
     background: 'rgba(255,255,255,0.9)',
     padding: '10px 20px',
     borderRadius: '8px',
-    maxWidth: '600px',
+    maxWidth: '400px',
     boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
     fontFamily: '"Georgia", serif',
 };
@@ -39,7 +39,7 @@ const draggingItemStyle = {
     cursor: 'grabbing',
 };
 
-const RankableListDisplay = ({ title, items, onRankChange, top, left, right, listId }) => {
+const RankableListDisplay = ({ title, items, onRankChange, top, left, right, translateX, listId }) => {
     const [listItems, setListItems] = useState(items);
     const [draggingIndex, setDraggingIndex] = useState(null);
 
@@ -84,8 +84,9 @@ const RankableListDisplay = ({ title, items, onRankChange, top, left, right, lis
     const containerStyle = {
         ...containerBaseStyle,
         top: top || 'auto',
-        left: left || 'auto',
-        right: right || 'auto',
+        ...(left ? { left } : {}),
+        ...(right ? { right } : {}),
+        transform: translateX ? `translateX(${translateX})` : undefined,
     };
 
     return (

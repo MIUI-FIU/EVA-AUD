@@ -429,13 +429,13 @@ export const Screen1 = ({ onNext }) => {
 export const Screen2 = ({ onNext }) => {
     const [showCommon, setShowCommon] = useState(false);
 
-    const yourBenefitsList = [
+    const [yourBenefitsList, setYourBenefitsList] = useState([
         "It helps me feel relaxed.",
         "It makes me more happy.",
         "It makes me more creative.",
-    ];
+    ]);
 
-    const commonBenefitsList = [
+    const [commonBenefitsList, setCommonBenefitsList] = useState([
         "It relaxes me.",
         "It helps me sleep.",
         "It helps me be more open socially.",
@@ -444,18 +444,43 @@ export const Screen2 = ({ onNext }) => {
         "I feel more creative when I drink.",
         "It helps me feel sexier or have better sex.",
         "I like the high."
-    ];
+    ]);
 
     const handleInfoClick = () => {
         setShowCommon((prev) => !prev);
     };
 
+    const handleRemoveYourBenefit = (itemToRemove) => {
+        setYourBenefitsList(prev => prev.filter(item => item !== itemToRemove));
+    };
+
+    const handleAddFromCommon = (itemToAdd) => {
+        // Prevent duplicates
+        if (!yourBenefitsList.includes(itemToAdd)) {
+            setYourBenefitsList(prev => [...prev, itemToAdd]);
+        }
+    };
+
     return (
         <>
         <ScreenWrapper currentScreenId={2} title="Pros of Drinking">
-            <ListDisplay title="Your Benefits" items={yourBenefitsList} top='20%' left='10%' />
+            <ListDisplay
+                title="Your Benefits"
+                items={yourBenefitsList}
+                top='15%'
+                left='50%'
+                translateX='-120%'
+                onItemClick={handleRemoveYourBenefit}
+            />
             {showCommon && (
-                <ListDisplay title="Common Benefits" items={commonBenefitsList} top='20%' right='15%' />
+                <ListDisplay
+                    title="Common Benefits"
+                    items={commonBenefitsList}
+                    top='15%'
+                    right='50%'
+                    translateX='125%'
+                    onItemClick={handleAddFromCommon}
+                />
             )}
             <InfoButton
                 onClick={handleInfoClick}
@@ -471,13 +496,13 @@ export const Screen2 = ({ onNext }) => {
 export const Screen3 = ({ onNext }) => {
     const [showCommon, setShowCommon] = useState(false);
 
-    const yourDrawbacksList = [
+    const [yourDrawbacksList, setYourDrawbacksList] = useState([
         "I lose focus the next day.",
         "I feel emotionally off the next day.",
         "It makes me question my decisions."
-    ]
+    ]);
 
-    const commonDrawbacksList = [
+    const [commonDrawbacksList] = useState([
         "It affects my relationships with others.",
         "DWI/DUIs",
         "Other legal problems",
@@ -492,17 +517,42 @@ export const Screen3 = ({ onNext }) => {
         "Feeling dependent on alcohol",
         "Passing out or fainting suddenly",
         "Health symptoms or problems"
-    ]
+    ]);
 
     const handleInfoClick = () => {
         setShowCommon((prev) => !prev);
     };
 
+    const handleRemoveYourDrawback = (itemToRemove) => {
+        setYourDrawbacksList(prev => prev.filter(item => item !== itemToRemove));
+    };
+
+    const handleAddFromCommon = (itemToAdd) => {
+        if (!yourDrawbacksList.includes(itemToAdd)) {
+            setYourDrawbacksList(prev => [...prev, itemToAdd]);
+        }
+    };
+
     return (
+        <>
         <ScreenWrapper currentScreenId={3} title="Cons of Drinking">
-            <ListDisplay title="Your Drawbacks" items={yourDrawbacksList} top='20%' left='10%' />
+            <ListDisplay
+                title="Your Drawbacks"
+                items={yourDrawbacksList}
+                top='15%'
+                left='50%'
+                translateX='-120%'
+                onItemClick={handleRemoveYourDrawback}
+            />
             {showCommon && (
-                <ListDisplay title="Common Drawbacks" items={commonDrawbacksList} top='20%' right='15%' />
+                <ListDisplay
+                    title="Common Drawbacks"
+                    items={commonDrawbacksList}
+                    top='15%'
+                    right='50%'
+                    translateX='125%'
+                    onItemClick={handleAddFromCommon}
+                />
             )}
             <InfoButton
                 onClick={handleInfoClick}
@@ -510,6 +560,8 @@ export const Screen3 = ({ onNext }) => {
             />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
+        <MicrophoneButton />
+        </>
     );
 };
 
@@ -534,13 +586,15 @@ export const Screen4 = ({ onNext }) => {
     };
 
     return (
+        <>
         <ScreenWrapper currentScreenId={4} title="Prioritization of Drinking">
             <RankableListDisplay
                 title="Drag and drop to rank your most important benefits to drinking"
                 items={yourBenefitsList}
                 onRankChange={handleRankChange}
                 top='200px'
-                left='150px'
+                left='50%'
+                translateX="-120%"
                 listId='0'
             />
 
@@ -549,11 +603,14 @@ export const Screen4 = ({ onNext }) => {
                 items={yourDrawbacksList}
                 onRankChange={handleRankChange}
                 top='200px'
-                right='150px'
+                right='50%'
+                translateX="120%"
                 listId='1'
             />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
+        
+        </>
     );
 };
 
@@ -571,24 +628,39 @@ export const Screen5 = ({ onNext }) => {
     ]
 
     return (
+        <>
         <ScreenWrapper currentScreenId={5} title="Personalized Insights">
-            <ListDisplay title="Your Benefits" items={yourBenefitsList} top='20%' left='10%' />
-            <ListDisplay title="Your Drawbacks" items={yourDrawbacksList} top='20%' right='15%' />
+            <ListDisplay 
+                title="Your Benefits" 
+                items={yourBenefitsList} 
+                top='20%' 
+                left='50%'
+                translateX='-120%'
+            />
+            <ListDisplay 
+                title="Your Drawbacks" 
+                items={yourDrawbacksList} 
+                top='20%' 
+                right='50%'
+                translateX='120%'
+            />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
+        <MicrophoneButton />
+        </>
     );
 };
 
 export const Screen6 = ({ onNext }) => {
     const [showCommon, setShowCommon] = useState(false);
 
-    const yourChoicesList = [
+    const [yourChoicesList, setYourChoicesList] = useState([
         "It helps me feel relaxed.",
         "It makes me feel \"present in the moment\"",
         "It makes me more creative."
-    ]
+    ]);
 
-    const suggestionsList = [
+    const [suggestionsList] = useState([
         "To reduce my stress levels.",
         "To be more relaxed in social situations.",
         "To have fun",
@@ -603,17 +675,42 @@ export const Screen6 = ({ onNext }) => {
         "To be braver or more daring",
         "To sleep",
         "To forget"
-    ]
+    ]);
 
     const handleInfoClick = () => {
         setShowCommon((prev) => !prev);
     };
 
+    const handleRemoveYourChoices = (itemToRemove) => {
+        setYourChoicesList(prev => prev.filter(item => item !== itemToRemove));
+    };
+
+    const handleAddFromSuggestions = (itemToAdd) => {
+        if (!yourChoicesList.includes(itemToAdd)) {
+            setYourChoicesList(prev => [...prev, itemToAdd]);
+        }
+    };
+
     return (
+        <>
         <ScreenWrapper currentScreenId={6} title="Alternatives (Getting What You Want)">
-            <ListDisplay title="Your Choices" items={yourChoicesList} top='20%' left='10%' />
+            <ListDisplay 
+                title="Your Choices" 
+                items={yourChoicesList} 
+                top='15%' 
+                left='50%'
+                translateX='-120%'
+                onItemClick={handleRemoveYourChoices}
+            />
             {showCommon && (
-                <ListDisplay title="Suggestions" items={suggestionsList} top='20%' right='15%' />
+                <ListDisplay 
+                    title="Suggestions" 
+                    items={suggestionsList} 
+                    top='15%'
+                    right='50%'
+                    translateX='125%'
+                    onItemClick={handleAddFromSuggestions}
+                />
             )}
             <InfoButton
                 onClick={handleInfoClick}
@@ -621,6 +718,8 @@ export const Screen6 = ({ onNext }) => {
             />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
+        <MicrophoneButton />
+        </>
     );
 };
 
@@ -654,10 +753,23 @@ export const Screen7 = ({ onNext }) => {
     };
 
     return (
+        <>
         <ScreenWrapper currentScreenId={7} title="Alternatives (Get Where You Want To Go)">
-            <ListDisplay title="Your Choices" items={yourChoicesList} top='20%' left='10%' />
+            <ListDisplay 
+                title="Your Choices" 
+                items={yourChoicesList} 
+                top='15%' 
+                left='50%'
+                translateX='-120%' 
+            />
             {showCommon && (
-                <ListDisplay title="Suggestions" items={suggestionsList} top='20%' right='15%' />
+                <ListDisplay 
+                    title="Suggestions" 
+                    items={suggestionsList} 
+                    top='15%' 
+                    right='50%'
+                    translateX='125%'
+                />
             )}
             <InfoButton
                 onClick={handleInfoClick}
@@ -665,6 +777,8 @@ export const Screen7 = ({ onNext }) => {
             />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
+        <MicrophoneButton />
+        </>
     );
 };
 
@@ -684,8 +798,20 @@ export const Screen8 = ({ onNext }) => {
 
     return (
         <ScreenWrapper currentScreenId={8} title="Alternatives (Feedback)">
-            <ListDisplay title="Your Desired Effects" items={yourDesiredEffectsList} top='20%' left='10%' />
-            <ListDisplay title="Possible Alternatives" items={yourPossibleAlternativesList}top='20%' right='15%' />
+            <ListDisplay 
+                title="Your Desired Effects" 
+                items={yourDesiredEffectsList} 
+                top='20%' 
+                left='50%' 
+                translateX='-120%' 
+            />
+            <ListDisplay 
+                title="Possible Alternatives" 
+                items={yourPossibleAlternativesList}
+                top='20%' 
+                right='50%'
+                translateX='120%' 
+            />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
     );

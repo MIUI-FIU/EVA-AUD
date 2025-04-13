@@ -3,44 +3,44 @@ import { createPortal } from "react-dom";
 import { Mic, MicOff } from "lucide-react";
 
 const MicrophoneButton = () => {
-  const [listening, setListening] = useState(false);
+  const [listening, setListening] = useState(false); // Initially OFF
 
   const toggleMic = () => {
     setListening((prev) => !prev);
   };
 
-  // Button with inline styles ensuring it's always visible
   const button = (
     <button
       onClick={toggleMic}
       style={{
-        position: "fixed",
-        bottom: "20px",  // Adjust this to move it closer or further
-        left: "25%",   // Adjust this for horizontal positioning
-        width: "70px",   // Adjust size of the button
-        height: "70px",  // Adjust size of the button
-        backgroundColor: listening ? "red" : "#ccc", // Background change on click
-        color: "black",  // Text color
-        zIndex: 9999,    // Ensure it appears on top of other elements
-        borderRadius: "50%",  // Make it circular
-        border: "3px solid black", // Border to make it stand out
+        position: 'fixed',
+        bottom: '260px',
+        left: '50%',
+        transform: 'translateX(-670%)',
+        width: "70px",
+        height: "70px",
+        backgroundColor: listening ? "#ccc" : "red", // Grey when listening, Red when not
+        color: "black",
+        zIndex: 9999,
+        borderRadius: "50%",
+        border: "3px solid black",
         display: "flex",
-        justifyContent: "center",  // Center icon inside button
-        alignItems: "center",      // Center icon inside button
-        fontSize: "18px",          // Icon size
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "18px",
+        transition: 'background-color 0.3s ease',
       }}
-      aria-label="Toggle Microphone"
+      aria-label={listening ? "Turn off microphone" : "Turn on microphone"}
     >
-      {listening ? <MicOff size={40} /> : <Mic size={40} />}
+      {listening ? <Mic size={40} /> : <MicOff size={40} />}
     </button>
   );
 
-  // Debugging the mount process
   useEffect(() => {
-    console.log("MicrophoneButton mounted");
+    console.log("MicrophoneButton mounted, mic is OFF by default");
   }, []);
 
-  return createPortal(button, document.body); // Renders button at document body
+  return createPortal(button, document.body);
 };
 
 export default MicrophoneButton;

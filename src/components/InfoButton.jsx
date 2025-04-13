@@ -4,9 +4,10 @@ const InfoButton = ({ onClick, title = "More info" }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     const buttonStyle = {
-        position: 'absolute',
-        top: '200px',
-        right: '20%',
+        position: 'fixed',
+        top: '8%',
+        right: '50%',
+        transform: 'translateX(650%)',
         background: isHovered ? '#0056b3' : '#007bff', // darker blue on hover
         border: 'none',
         borderRadius: '50%',

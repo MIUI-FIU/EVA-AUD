@@ -155,9 +155,10 @@ import React from 'react';
 export const NextButton = ({ onClick, text = 'Next' }) => {
   const styles = {
     button: {
-      position: 'absolute',
-      top: '4%',
-      right: '3.5%',
+      position: 'fixed',
+      bottom: '260px',
+      left: '50%',
+      transform: 'translateX(460%)',
       padding: '12px 25px',
       backgroundColor: '#FF8C00', // Changed to orange (Dark Orange)
       color: 'white',
