@@ -1,81 +1,54 @@
-# CAP 5109 Project 6: MIUI  
-## Medium Fidelity Interactive Prototype
+# CAP 5109 Project 6: eEVA AUD – Decision Balance Exercise (DBE)
+## Medium-Fidelity Interactive Prototype – README
 
-This README file provides instructions for evaluating our medium fidelity interactive wireframe prototype of the **Decision Balance Exercise** application.  
-Please refer to the task list document for detailed task-based scenarios you will need to complete.
+This README provides evaluation instructions for the medium-fidelity prototype of the **eEVA AUD application**, redesigned to support the **Decision Balance Exercise (DBE)** segment of the *Drinker's Check-Up (DCU)* alcohol intervention.
 
----
+The primary goal of this redesign is to shift from a developer-oriented tool to a **user-centered, emotionally intelligent application**. The prototype leverages a **Socially Interactive Agent (SIA)** named EVA, designed to foster **rapport, trust, and emotional engagement** by guiding users through reflection on their alcohol use in a **non-judgmental, personalized environment**.
 
 ### Getting Started
 
-1. Our prototype has been created using **[Balsamiq/Figma/Your chosen software]**.  
-   You can access the prototype through the shared link: **[Insert your prototype link here]**
+1. Our prototype has been developed using **JavaScript** and related web technologies. You can access the prototype through the shared link: **[https://miui-fiu.github.io/EVA-AUD/](https://miui-fiu.github.io/EVA-AUD/)**
 
-2. For each task, begin with the specified starting wireframe noted below.  
-   You should be able to complete all tasks independently, without a facilitator.
-
----
+2. No installation or facilitator is required to begin evaluation. For each task, begin with the specified starting wireframe noted below. You should be able to complete all tasks independently.
 
 ### Starting Points for Tasks
 
-| Task | Starting Wireframe |
-|------|--------------------|
-| 1. Evaluate your drinking habits and begin the Decision Balance Exercise | "Welcome Screen" |
-| 2. Introduce yourself to the SIA agent using your preferred input method | "SIA Introduction" |
-| 3. List the positive aspects of drinking | "Pros of Drinking" |
-| 4. List the negative aspects of drinking | "Cons of Drinking" |
-| 5. Rank your selected pros and cons based on your priorities | "Ranking Screen" |
-| 6. List the desired benefits you receive while drinking | "Drinking Benefits" |
-| 7. List alternative activities to drinking | "Alternative Activities" |
-| 8. Navigate throughout the Decision Balance Exercise | "Welcome Screen" (for navigation testing) |
-| 9. View summaries and insights of your responses | "Summary Screen" |
-| 10. Complete entire Decision Balance Exercise and exit | "Welcome Screen" (for full exercise completion) |
+Below are the tasks for evaluating our prototype, along with their starting points:
 
----
+| Task | Starting Point |
+|------|-------------------|
+| 1. **Navigating throughout the Decision Balance Exercise:** Navigate to corresponding sections of the Decision Balance Exercise to complete the exercise. | Start with the home screen of the application |
+| 2. **Viewing Summaries and Insights:** Review the summary of your responses and insights the system provides. | Navigate to the summary section near the end of the exercise |
+| 3. **Complete entire Decision Balance Exercise and exit:** Finish the entire Decision Balance Exercise and exit the application. | Begin from the home screen and complete the full exercise |
+| 4. **Evaluate your drinking habits:** Find the section where you can begin this process and start. | Start with the home screen |
+| 5. **Interact with the SIA:** After EVA introduces itself, introduce yourself to the agent using your preferred input method. | EVA Introduction screen |
+| 6. **List positive aspects of drinking:** Locate where you can input these details and complete the task. | Pros of Drinking section |
+| 7. **List negative aspects of drinking:** Locate where you can input these details and complete this task. | Cons of Drinking section |
+| 8. **Rank pros and cons of drinking:** Locate the pros and cons elements and figure out how to rank based on your priorities. | Prioritization of Drinking |
+| 9. **List desired benefits from drinking:** Input the benefits you receive while drinking. | Alternatives (Getting What You Want) section |
+| 10. **List alternative activities to drinking:** Input your alternative activities. | Alternatives (Get Where You Want To Go) section |
 
 ### UI Elements & Navigation Guide
 
-- **SIA Agent Interface**  
-  The Social Interaction Agent (SIA) appears throughout the exercise to guide you.  
-  You can interact with it using **text input** or **selection buttons**.
+- **EVA: Socially Interactive Agent**: EVA acts as a virtual facilitator throughout the exercise, using techniques such as empathetic introductions, emotional mirroring, gentle reassurance, and active listening.
+- **Navigation Controls**: Use the "Next" and "Back" buttons at the bottom of each screen to progress through or revisit parts of the exercise.
+- **Interaction Modes**: You can enter responses using typed input or selection-based interfaces where applicable.
+- **Input Fields**: Text fields allow you to enter your personal responses. Click inside any field to begin typing.
+- **Ranking Interface**: Items in the pros and cons list can be reordered using drag-and-drop or arrow buttons to indicate their importance to you.
+- **Summary View**: Toward the end of the DBE, EVA presents a personalized overview of your reflections, helping reinforce behavior insights and readiness for change.
+- **Exit Button**: Found on the final screen after completing all sections.
 
-- **Navigation Controls**  
-  Use the **"Next"** and **"Back"** buttons at the bottom of each screen to move between sections.
+### Prototype Considerations
 
-- **Input Fields**  
-  Text fields allow you to enter your personal responses.  
-  Click inside any field to begin typing.
-
-- **Ranking Interface**  
-  On the ranking screen, you can **drag items to reorder them** or **use up/down arrows to adjust priority**.
-
-- **Summary View**  
-  This section collates all your responses and provides insights based on your inputs.
-
-- **Exit Button**  
-  Found on the final screen after completing all sections.
-
----
-
-### Special Notes
-
-- This prototype simulates a complete decision balance exercise but uses **predefined responses** for system-generated insights.
-- The SIA agent's responses are simulated and **will not adapt to all possible user inputs** in this prototype.
-
----
+- This prototype is a medium-fidelity simulation: EVA's responses are scripted for testing purposes and do not yet use adaptive AI.
+- Insights and dialogue shown are derived from predefined content modeled after real-world behavioral interventions.
+- This experience is part of a broader reimagining of the eEVA platform, moving from static assessments to engaging, emotionally aware interventions.
 
 ### Team Contact Information
 
 If you have any questions or encounter any issues while evaluating our prototype, please contact:
 
-- **Christopher Duarte**  
-  Email: cduar022@fiu.edu  
-  Phone: 305-469-6041
+- **Christopher Duarte**: cduar022@fiu.edu / 305-469-6041
+- **Shamim Golafshan**: sgola004@fiu.edu / 786-501-3261
 
-- **Shamim Golafshan**  
-  Email: sgola004@fiu.edu  
-  Phone: 786-501-3261
-
----
-
-**Thank you for your time and feedback!**
+We sincerely appreciate your time and feedback in helping us create a more empathetic, user-driven system.
