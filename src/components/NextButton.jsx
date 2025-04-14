@@ -152,48 +152,43 @@
 
 import React from 'react';
 
-export const NextButton = ({ onClick, text = 'Next' }) => {
+export const NextButton = ({ onClick, text = 'Next', disabled = false }) => {
   const styles = {
     button: {
       position: 'fixed',
       bottom: '260px',
       left: '50%',
-      transform: 'translateX(460%)',
+      transform: 'translateX(380px)',
       padding: '12px 25px',
-      backgroundColor: '#FF8C00', // Changed to orange (Dark Orange)
+      backgroundColor: disabled ? '#aaa' : '#FF8C00', // Gray out when disabled
       color: 'white',
       border: 'none',
       borderRadius: '25px',
       fontSize: '16px',
       fontWeight: 'bold',
-      cursor: 'pointer',
+      cursor: disabled ? 'not-allowed' : 'pointer',
       boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
       transition: 'all 0.3s ease',
-      fontFamily: '"Times New Roman", Times, serif' // Added Times New Roman font
+      fontFamily: '"Times New Roman", Times, serif'
     },
     hoverStyle: {
-      backgroundColor: '#E67300', // Darker orange for hover state
+      backgroundColor: '#E67300',
       boxShadow: '0 4px 8px rgba(0,0,0,0.3)'
     }
   };
 
   const [hover, setHover] = React.useState(false);
 
-  // Handle the button click
   const handleClick = () => {
-    // Call the provided onClick function if provided
+    if (disabled) return; // prevent action when disabled
+
     if (onClick) {
       onClick();
-    } 
-    // If this is the "Finish" button, call the finishScreens function
-    else if (text === 'Finish' && window.finishScreens) {
+    } else if (text === 'Finish' && window.finishScreens) {
       window.finishScreens();
-    }
-    // Otherwise use the nextScreen function
-    else if (window.nextScreen) {
+    } else if (window.nextScreen) {
       window.nextScreen();
-    }
-    else {
+    } else {
       console.warn('No click handler or global nextScreen function available');
     }
   };
@@ -202,11 +197,12 @@ export const NextButton = ({ onClick, text = 'Next' }) => {
     <button
       style={{
         ...styles.button,
-        ...(hover ? styles.hoverStyle : {})
+        ...(hover && !disabled ? styles.hoverStyle : {})
       }}
       onClick={handleClick}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      onMouseEnter={() => !disabled && setHover(true)}
+      onMouseLeave={() => !disabled && setHover(false)}
+      disabled={disabled}
     >
       {text}
     </button>

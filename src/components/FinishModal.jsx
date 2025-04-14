@@ -9,7 +9,7 @@ const FinishModal = ({ isOpen, onClose }) => {
         <ModalHeader>Thank You for Participating!</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <p>Your contributions are valuable. We appreciate your time.</p>
+          <p>Your contributions are valuable. We appreciate your time. Please feel free to exit out of the application when you are ready.</p>
           <Button colorScheme="blue" onClick={onClose}>Close</Button>
         </ModalBody>
       </ModalContent>

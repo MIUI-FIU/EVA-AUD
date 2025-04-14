@@ -306,19 +306,19 @@
 // // Main App component to manage screen navigation
 // const App = () => {
 //     const [currentScreen, setCurrentScreen] = useState(1);
-    
+
 //     // Define functions for navigation
 //     const goToNextScreen = () => {
 //         setCurrentScreen(prevScreen => Math.min(prevScreen + 1, 9));
 //     };
-    
+
 //     const goToScreen = (screenNum) => {
 //         setCurrentScreen(screenNum);
 //     };
-    
+
 //     // Make goToScreen available globally for the HamburgerMenu
 //     window.goToScreen = goToScreen;
-    
+
 //     // Render the current screen
 //     const renderScreen = () => {
 //         switch (currentScreen) {
@@ -344,7 +344,7 @@
 //                 return <Screen1 onNext={goToNextScreen} />;
 //         }
 //     };
-    
+
 //     return (
 //         <div style={{ height: '100vh', width: '100vw' }}>
 //             {renderScreen()}
@@ -354,7 +354,7 @@
 
 // export default App;
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HamburgerMenu from './HamburgerMenu';
 import ListDisplay from './ListDisplay';
 import InfoButton from './InfoButton';
@@ -364,6 +364,10 @@ import { NextButton } from './NextButton';
 import DialogueInputComponent from './DialogueInputComponent';
 import screenDialogues from './dialogueData';
 import ProgressBar from './ProgressBar';
+
+import { fetchVoices, fetchTTS, playAudioFromBase64, scheduleVisemeApplication, agentSpeak } from './agentSpeak'
+
+import { blinking } from '../modules/blink';
 
 const styles = {
     screen: {
@@ -389,6 +393,10 @@ const styles = {
 
 // Common wrapper for all screens to include menu and dialogue system
 const ScreenWrapper = ({ children, currentScreenId, title }) => {
+    // useEffect(() => {
+    //     blinking(animationManager);
+    // }, []);
+
     const handleScreenChange = (screenNum) => {
         if (window.goToScreen) {
             window.goToScreen(screenNum);
@@ -405,29 +413,52 @@ const ScreenWrapper = ({ children, currentScreenId, title }) => {
             />
             {/* Add the progress bar here */}
             <ProgressBar currentScreen={currentScreenId} totalScreens={9} />
-            
+
             <h2 style={styles.title}>{title}</h2>
-            
-            <DialogueInputComponent 
+
+            <DialogueInputComponent
                 initialDialogue={screenDialogues[currentScreenId] || []}
                 placeholder="Type your response here..."
             />
-            
+
             {children}
         </div>
     );
 };
 
 export const Screen1 = ({ onNext }) => {
+    const [isSpeaking, setIsSpeaking] = useState(true); 
+
+    useEffect(() => {
+        const getVoices = async () => {
+            const speakText = "Hi, I am a socially interactive agent named eva. You will now be taking the first step to reflect on your relationship with alcohol which is a courageous decision. My objective is to assist you every step of the way during this process. I understand that reflecting on your alcohol habits can be challenging, and it's normal to have mixed feelings. There's no rush, and everything here is confidential. Take your time. When you are ready to continue, please press 'Next' button in the top right corner of the screen."
+
+            await agentSpeak(speakText)
+            setIsSpeaking(false)
+        };
+        getVoices();
+    }, []);
+
     return (
         <ScreenWrapper currentScreenId={1} title="Introduction">
-            <NextButton onClick={onNext} />
+            <NextButton onClick={onNext} disabled={isSpeaking} />
         </ScreenWrapper>
     );
 };
 
 export const Screen2 = ({ onNext }) => {
     const [showCommon, setShowCommon] = useState(false);
+    const [isSpeaking, setIsSpeaking] = useState(true); 
+
+    useEffect(() => {
+        const getVoices = async () => {
+            const speakText = "Let\'s start with the positives. What are some benefits or enjoyable aspects of drinking for you? If you\'d like to see common benefits others have found of drinking, please feel free to click the info button to see the benefits."
+
+            await agentSpeak(speakText)
+            setIsSpeaking(false)
+        };
+        getVoices();
+    }, []);
 
     const [yourBenefitsList, setYourBenefitsList] = useState([
         "It helps me feel relaxed.",
@@ -486,7 +517,7 @@ export const Screen2 = ({ onNext }) => {
                 onClick={handleInfoClick}
                 title={showCommon ? "Hide Common Benefits" : "View Common Benefits"}
             />
-            <NextButton onClick={onNext} />
+            <NextButton onClick={onNext} disabled={isSpeaking}/>
         </ScreenWrapper>
         <MicrophoneButton />
         </>
@@ -609,7 +640,7 @@ export const Screen4 = ({ onNext }) => {
             />
             <NextButton onClick={onNext} />
         </ScreenWrapper>
-        
+
         </>
     );
 };

@@ -30,11 +30,11 @@ if ('serviceWorker' in navigator) {
 }
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ChakraProvider>
       <UnityLoadProvider>
         <ComponentToRender />
       </UnityLoadProvider>
     </ChakraProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
