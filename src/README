@@ -31,13 +31,18 @@ Note about Global Tasks (Tasks 1-3): These three global tasks are designed to be
 
 ### UI Elements & Navigation Guide
 
-- **EVA: Socially Interactive Agent**: EVA acts as a virtual facilitator throughout the exercise, using techniques such as empathetic introductions, emotional mirroring, gentle reassurance, and active listening.
-- **Navigation Controls**: Use the "Next" and "Back" buttons at the bottom of each screen to progress through or revisit parts of the exercise.
-- **Interaction Modes**: You can enter responses using typed input or selection-based interfaces where applicable.
-- **Input Fields**: Text fields allow you to enter your personal responses. Click inside any field to begin typing.
-- **Ranking Interface**: Items in the pros and cons list can be reordered using drag-and-drop or arrow buttons to indicate their importance to you.
-- **Summary View**: Toward the end of the DBE, EVA presents a personalized overview of your reflections, helping reinforce behavior insights and readiness for change.
-- **Exit Button**: Found on the final screen after completing all sections.
+- **EVA: Socially Interactive Agent**: EVA appears as a virtual facilitator with a 3D avatar in a professional setting.
+- **Navigation Controls**:
+  - **Next Button**: Located above the chat log, use this to proceed to the next step in the exercise.
+  - **Hamburger Menu**: Click the menu icon (≡) in the top left corner to navigate directly to different sections of the application.
+  - **Progress Bar**: Located at the top of the screen, this indicates how far you've advanced through the exercise.
+  - **Info Button**: Provides additional options when needed.
+- **Interaction Methods**:
+  - **Text Input**: Type your responses in the text box at the bottom of the screen.
+  - **Selection-Based Options**: Some screens may offer multiple-choice or selection options.
+- **Text Input Field**: A clearly labeled text box appears at the bottom of the interface where you can enter your personal responses.
+- **Ranking Interface**: When you reach the ranking section, you can prioritize your previously entered items using drag and drop.
+- **Exit Option**: Available through the menu system when you've completed the exercise, you can click on the finish button.
 
 ### Prototype Considerations
 
