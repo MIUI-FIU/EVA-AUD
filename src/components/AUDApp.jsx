@@ -102,6 +102,7 @@ import IntroBox from './IntroBox';
 import { useToast, Box } from '@chakra-ui/react';
 
 import ScreenManager from './AUDScreenManager';
+import { blinking } from '../modules/blink';
 
 function AUDApp() {
     const { isLoaded, engine, facslib } = useUnityState();
@@ -149,6 +150,8 @@ function AUDApp() {
             window.animationManager = manager;
             setAnimationManager(manager);
             setSetupComplete(true);
+
+            blinking(window.animationManager);
             
             // Refresh the goToScreen function now that we've loaded
             if (typeof window.goToScreen !== 'function') {

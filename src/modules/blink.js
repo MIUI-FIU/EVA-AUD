@@ -1,8 +1,7 @@
 let blinkInterval;
 
 export function blinking(animationManager) {
-    let blinkInterval
-    const blinkSpeed = 4000
+    const blinkSpeed = 4000;
 
     if (blinkInterval) {
         clearInterval(blinkInterval);
@@ -10,10 +9,12 @@ export function blinking(animationManager) {
 
     // Set up the blink interval
     blinkInterval = setInterval(() => {
-        // Close eyes
         animationManager.scheduleChange("45", 200, 100, 0); // Close eyes
-        // Open eyes after 200ms delay (after the close animation)
-        setTimeout(() => animationManager.scheduleChange("45", 0, 100, 0), 600); // Open300 eyes
+
+        // Open eyes after 600ms
+        setTimeout(() => {
+            animationManager.scheduleChange("45", 0, 100, 0); // Open eyes
+        }, 600);
     }, blinkSpeed + 400);
 }
 

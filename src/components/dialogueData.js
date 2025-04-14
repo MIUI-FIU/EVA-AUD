@@ -5,7 +5,7 @@ const screenDialogues = {
   1: [
     { 
       speaker: 'EVA', 
-      text: 'Hi, I am a socially interactive agent named EVA. You will now be taking the first step to reflect on your relationship with alcohol which is a courageous decision. My objective is to assist you every step of the way during this process. I understand that reflecting on your alcohol habits can be challenging, and it\'s normal to have mixed feelings. There\'s no rush, and everything here is confidential. Take your time. When you are ready to continue, please press \'Next\' button in the top right corner of the screen.'
+      text: 'Hi, I am a socially interactive agent named EVA. You will now be taking the first step to reflect on your relationship with alcohol which is a courageous decision. My objective is to assist you every step of the way during this process. I understand that reflecting on your alcohol habits can be challenging, and it\'s normal to have mixed feelings. There\'s no rush, and everything here is confidential. Take your time. When you are ready to continue, please press \'Next\' button above.'
     }
   ],
   

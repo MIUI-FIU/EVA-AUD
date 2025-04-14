@@ -393,10 +393,6 @@ const styles = {
 
 // Common wrapper for all screens to include menu and dialogue system
 const ScreenWrapper = ({ children, currentScreenId, title }) => {
-    // useEffect(() => {
-    //     blinking(animationManager);
-    // }, []);
-
     const handleScreenChange = (screenNum) => {
         if (window.goToScreen) {
             window.goToScreen(screenNum);
@@ -430,13 +426,13 @@ export const Screen1 = ({ onNext }) => {
     const [isSpeaking, setIsSpeaking] = useState(true); 
 
     useEffect(() => {
-        const getVoices = async () => {
-            const speakText = "Hi, I am a socially interactive agent named eva. You will now be taking the first step to reflect on your relationship with alcohol which is a courageous decision. My objective is to assist you every step of the way during this process. I understand that reflecting on your alcohol habits can be challenging, and it's normal to have mixed feelings. There's no rush, and everything here is confidential. Take your time. When you are ready to continue, please press 'Next' button in the top right corner of the screen."
+        const speakInitDialogue = async () => {
+            const speakText = "Hi, I am a socially interactive agent named eva. You will now be taking the first step to reflect on your relationship with alcohol which is a courageous decision. My objective is to assist you every step of the way during this process. I understand that reflecting on your alcohol habits can be challenging, and it's normal to have mixed feelings. There's no rush, and everything here is confidential. Take your time. When you are ready to continue, please press 'Next' button above."
 
             await agentSpeak(speakText)
             setIsSpeaking(false)
         };
-        getVoices();
+        speakInitDialogue();
     }, []);
 
     return (
@@ -451,13 +447,13 @@ export const Screen2 = ({ onNext }) => {
     const [isSpeaking, setIsSpeaking] = useState(true); 
 
     useEffect(() => {
-        const getVoices = async () => {
+        const speakInitDialogue = async () => {
             const speakText = "Let\'s start with the positives. What are some benefits or enjoyable aspects of drinking for you? If you\'d like to see common benefits others have found of drinking, please feel free to click the info button to see the benefits."
 
             await agentSpeak(speakText)
             setIsSpeaking(false)
         };
-        getVoices();
+        speakInitDialogue();
     }, []);
 
     const [yourBenefitsList, setYourBenefitsList] = useState([
@@ -526,6 +522,17 @@ export const Screen2 = ({ onNext }) => {
 
 export const Screen3 = ({ onNext }) => {
     const [showCommon, setShowCommon] = useState(false);
+    const [isSpeaking, setIsSpeaking] = useState(true); 
+
+    useEffect(() => {
+        const speakInitDialogue = async () => {
+            const speakText = "Now, let\'s look at the other side. Have there been any drawbacks or challenges you\'ve noticed with drinking?"
+
+            await agentSpeak(speakText)
+            setIsSpeaking(false)
+        };
+        speakInitDialogue();
+    }, []);
 
     const [yourDrawbacksList, setYourDrawbacksList] = useState([
         "I lose focus the next day.",
@@ -589,7 +596,7 @@ export const Screen3 = ({ onNext }) => {
                 onClick={handleInfoClick}
                 title={showCommon ? "Hide Common Drawbacks" : "View Common Drawbacks"}
             />
-            <NextButton onClick={onNext} />
+            <NextButton onClick={onNext} disabled={isSpeaking}/>
         </ScreenWrapper>
         <MicrophoneButton />
         </>
@@ -598,6 +605,17 @@ export const Screen3 = ({ onNext }) => {
 
 export const Screen4 = ({ onNext }) => {
     const [rankedItems, setRankedItems] = useState([]);
+    const [isSpeaking, setIsSpeaking] = useState(true); 
+
+    useEffect(() => {
+        const speakInitDialogue = async () => {
+            const speakText = "Now let\'s think about the benefits and drawbacks a bit more. How important is each of these things to you? Drag and drop each element based on its importance to you."
+
+            await agentSpeak(speakText)
+            setIsSpeaking(false)
+        };
+        speakInitDialogue();
+    }, []);
 
     const yourBenefitsList = [
         "It helps me feel relaxed.",
@@ -638,7 +656,7 @@ export const Screen4 = ({ onNext }) => {
                 translateX="120%"
                 listId='1'
             />
-            <NextButton onClick={onNext} />
+            <NextButton onClick={onNext} disabled={isSpeaking} />
         </ScreenWrapper>
 
         </>
@@ -646,6 +664,18 @@ export const Screen4 = ({ onNext }) => {
 };
 
 export const Screen5 = ({ onNext }) => {
+    const [isSpeaking, setIsSpeaking] = useState(true); 
+
+    useEffect(() => {
+        const speakInitDialogue = async () => {
+            const speakText = "You\'ve shared some really thoughtful insights. Drinking seems to offer you comfort and creativity, but also comes with some challenges like feeling off or unfocused afterward. That\'s an important balance to reflect on. Would you like to explore ways to keep the benefits while reducing the downsides?"
+
+            await agentSpeak(speakText)
+            setIsSpeaking(false)
+        };
+        speakInitDialogue();
+    }, []);
+
     const yourBenefitsList = [
         "It helps me feel relaxed.",
         "It makes me more happy.",
@@ -675,7 +705,7 @@ export const Screen5 = ({ onNext }) => {
                 right='50%'
                 translateX='120%'
             />
-            <NextButton onClick={onNext} />
+            <NextButton onClick={onNext} disabled={isSpeaking}/>
         </ScreenWrapper>
         <MicrophoneButton />
         </>
@@ -684,6 +714,17 @@ export const Screen5 = ({ onNext }) => {
 
 export const Screen6 = ({ onNext }) => {
     const [showCommon, setShowCommon] = useState(false);
+    const [isSpeaking, setIsSpeaking] = useState(true); 
+
+    useEffect(() => {
+        const speakInitDialogue = async () => {
+            const speakText = "People often drink to get something from it. It helps them relax, socialize, adjust their attitude, improve their mood, and escape. The \"desired effects\" themselves are often positive. They are part of enjoying the good things in life and help deal with life\'s stressors. What desired effects do you try to get by drinking?"
+
+            await agentSpeak(speakText)
+            setIsSpeaking(false)
+        };
+        speakInitDialogue();
+    }, []);
 
     const [yourChoicesList, setYourChoicesList] = useState([
         "It helps me feel relaxed.",
@@ -747,7 +788,7 @@ export const Screen6 = ({ onNext }) => {
                 onClick={handleInfoClick}
                 title={showCommon ? "Hide Suggestions" : "View Suggestions"}
             />
-            <NextButton onClick={onNext} />
+            <NextButton onClick={onNext} disabled={isSpeaking}/>
         </ScreenWrapper>
         <MicrophoneButton />
         </>
@@ -756,6 +797,17 @@ export const Screen6 = ({ onNext }) => {
 
 export const Screen7 = ({ onNext }) => {
     const [showCommon, setShowCommon] = useState(false);
+    const [isSpeaking, setIsSpeaking] = useState(true); 
+
+    useEffect(() => {
+        const speakInitDialogue = async () => {
+            const speakText = "What are some other ways to achieve these desired effects? If, for example, you tend to drink to reduce your stress and you\'re thinking about stopping or drinking less, how are you going to relax? People who don\'t develop other ways to relax may end up drinking heavily the next time they want to reduce their stress."
+
+            await agentSpeak(speakText)
+            setIsSpeaking(false)
+        };
+        speakInitDialogue();
+    }, []);
 
     const yourChoicesList = [
         "Go work out",
@@ -806,7 +858,7 @@ export const Screen7 = ({ onNext }) => {
                 onClick={handleInfoClick}
                 title={showCommon ? "Hide Suggestions" : "View Suggestions"}
             />
-            <NextButton onClick={onNext} />
+            <NextButton onClick={onNext} disabled={isSpeaking}/>
         </ScreenWrapper>
         <MicrophoneButton />
         </>
@@ -814,6 +866,18 @@ export const Screen7 = ({ onNext }) => {
 };
 
 export const Screen8 = ({ onNext }) => {
+    const [isSpeaking, setIsSpeaking] = useState(true); 
+
+    useEffect(() => {
+        const speakInitDialogue = async () => {
+            const speakText = "Here are your strategies as alternatives for getting what you want. Using them can reduce your risk for alcohol-related problems. It sounds like drinking helps you relax, feel present in the moment, and even tap into your creativity. Those are really valuable experiences. Have you noticed certain situations where you rely on alcohol to get those effects?"
+
+            await agentSpeak(speakText)
+            setIsSpeaking(false)
+        };
+        speakInitDialogue();
+    }, []);
+
     const yourDesiredEffectsList = [
         "It helps me feel relaxed",
         "It makes me feel \"present in the moment\"",
@@ -843,15 +907,27 @@ export const Screen8 = ({ onNext }) => {
                 right='50%'
                 translateX='120%' 
             />
-            <NextButton onClick={onNext} />
+            <NextButton onClick={onNext} disabled={isSpeaking}/>
         </ScreenWrapper>
     );
 };
 
 export const Screen9 = ({ onFinish }) => {
+    const [isSpeaking, setIsSpeaking] = useState(true); 
+
+    useEffect(() => {
+        const speakInitDialogue = async () => {
+            const speakText = "Clementine, it\'s been a pleasure working through this with you today. You\'ve come up with some great strategies to stay mindful and intentional about your drinking habits, and I\'m really excited to see how these changes make a difference. Remember, I\'ll be here to track your progress, remind you of your goals, and help reflect on your experiences. If you ever need to adjust anything or have more questions, just let me know. You\'re on the right path, and I believe you\'ve got this! I\'ll check in with you soon to see how things are going. Take care, and I\'m looking forward to hearing about your progress!"
+
+            await agentSpeak(speakText)
+            setIsSpeaking(false)
+        };
+        speakInitDialogue();
+    }, []);
+
     return (
         <ScreenWrapper currentScreenId={9} title="Conclusion">
-            <NextButton onClick={onFinish} text="Finish" />
+            <NextButton onClick={onFinish} text="Finish" disabled={isSpeaking}/>
         </ScreenWrapper>
     );
 };
