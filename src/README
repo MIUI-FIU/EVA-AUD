@@ -1,0 +1,48 @@
+# CAP 5109 Project 6: MIUI
+## Medium Fidelity Interactive Prototype
+
+This README file provides instructions for evaluating our medium fidelity interactive wireframe prototype of the Decision Balance Exercise application. Please refer to the task list document for detailed task-based scenarios you will need to complete.
+
+### Getting Started
+
+1. Our prototype has been created using [Balsamiq/Figma/Your chosen software]. You can access the prototype through the shared link: [Insert your prototype link here]
+
+2. For each task, begin with the specified starting wireframe noted below. You should be able to complete all tasks independently without a facilitator.
+
+### Starting Points for Tasks
+
+| Task | Starting Wireframe |
+|------|-------------------|
+| 1. Evaluate your drinking habits and begin the Decision Balance Exercise | Start with wireframe: "Welcome Screen" |
+| 2. Introduce yourself to the SIA agent using your preferred input method | Start with wireframe: "SIA Introduction" |
+| 3. List the positive aspects of drinking | Start with wireframe: "Pros of Drinking" |
+| 4. List the negative aspects of drinking | Start with wireframe: "Cons of Drinking" |
+| 5. Rank your selected pros and cons based on your priorities | Start with wireframe: "Ranking Screen" |
+| 6. List the desired benefits you receive while drinking | Start with wireframe: "Drinking Benefits" |
+| 7. List alternative activities to drinking | Start with wireframe: "Alternative Activities" |
+| 8. Navigate throughout the Decision Balance Exercise | Start with wireframe: "Welcome Screen" (for navigation testing) |
+| 9. View summaries and insights of your responses | Start with wireframe: "Summary Screen" |
+| 10. Complete entire Decision Balance Exercise and exit | Start with wireframe: "Welcome Screen" (for full exercise completion) |
+
+### UI Elements & Navigation Guide
+
+- **SIA Agent Interface**: The Social Interaction Agent (SIA) appears throughout the exercise to guide you. You can interact with it using text input or selection buttons.
+- **Navigation Controls**: Use the "Next" and "Back" buttons at the bottom of each screen to move between sections.
+- **Input Fields**: Text fields allow you to enter your personal responses. Click inside any field to begin typing.
+- **Ranking Interface**: On the ranking screen, you can [describe how the ranking works, e.g., "drag items to reorder them" or "use the up/down arrows to adjust priority"].
+- **Summary View**: The summary section collates all your responses and provides insights based on your inputs.
+- **Exit Button**: Found on the final screen after completing all sections.
+
+### Special Notes
+
+- This prototype simulates a complete decision balance exercise but uses predefined responses for system-generated insights.
+- The SIA agent's responses are simulated and will not adapt to all possible user inputs in this prototype.
+
+### Team Contact Information
+
+If you have any questions or encounter any issues while evaluating our prototype, please contact:
+
+- Christopher Duarte: cduar022@fiu.edu / 3054696041
+- Shamim Golafshan: sgola004@fiu.edu / 7865013261
+
+Thank you for your time and feedback!
